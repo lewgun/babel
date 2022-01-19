@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: projectcontour-roots
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kuard
+  name: kuard
+  namespace: projectcontour-roots
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kuard
+  template:
+    metadata:
+      labels:
+        app: kuard
+    spec:
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/projectsesame/kuard-amd64:1
+        name: kuard
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kuard
+  name: kuard
+  namespace: projectcontour-roots
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kuard
+  sessionAffinity: None
+  type: ClusterIP
