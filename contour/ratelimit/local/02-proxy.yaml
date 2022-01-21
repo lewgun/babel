@@ -1,0 +1,36 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: root
+  namespace: projectcontour-roots
+spec:
+  virtualhost:
+    fqdn: local.projectcontour.io
+    rateLimitPolicy:
+      local:
+        requests: 150
+        unit: hour
+        burst: 10
+  routes:
+    - services:
+        - name: rootapp
+          port: 80
+      conditions:
+        - prefix: /
+
+    - services:
+        - name: secureapp
+          port: 80
+      rateLimitPolicy:
+        local:
+          requests: 5
+          unit: minute
+          responseStatusCode: 503 # Service Unavailable 
+          responseHeadersToAdd:
+          - name: x-contour-ratelimited
+            value: "true"
+              
+      conditions:
+        - prefix: /secure    
+---
+

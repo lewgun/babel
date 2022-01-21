@@ -1,0 +1,4 @@
+    rateLimitService:
+      extensionService: projectcontour/ratelimit
+      domain: contour
+      failOpen: false

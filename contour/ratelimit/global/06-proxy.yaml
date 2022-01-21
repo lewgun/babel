@@ -1,0 +1,31 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: echo
+spec:
+  virtualhost:
+    fqdn: local.projectcontour.io
+  routes:
+  - conditions:
+    - prefix: /
+    services:
+    - name: ingress-conformance-echo
+      port: 80
+    rateLimitPolicy:
+      global:
+        descriptors:
+          - entries:
+              - remoteAddress: {}  
+  - conditions:
+    - prefix: /foo
+    services:
+    - name: ingress-conformance-echo
+      port: 80
+    rateLimitPolicy:
+      global:
+        descriptors:
+          - entries:
+              - remoteAddress: {}
+          - entries:
+              - genericKey:
+                  value: foo  
