@@ -7,8 +7,8 @@ spec:
   virtualhost:
     fqdn: local.projectcontour.io
   includes:
-    - name: blue
-    #- name: green
+    #- name: blue
+    - name: green
       namespace: projectcontour-deploy
       conditions:
         - prefix: /deploy
