@@ -6,21 +6,25 @@ metadata:
 spec:
   virtualhost:
     fqdn: local.projectcontour.io
+
   routes:
-  - services:
-    - name: kuard
-      port: 80
-    loadBalancerPolicy:
-      strategy: Cookie
+    - services:
+        - name: kuard
+          port: 80
+      conditions:
+        - prefix: /
+
+      loadBalancerPolicy:
+      #strategy: Cookie
       #strategy: WeightedLeastRequest
-      #strategy: Random
-      #strategy: RoundRobin
+       strategy: Random
+      # strategy: RoundRobin
 
-      #strategy: RequestHash
-      # requestHashPolicies:
-      # - headerHashOptions:
-      #     headerName: X-Some-Header
-      #   terminal: true
-      # - headerHashOptions:
-      #     headerName: User-Agent
-
+        # strategy: RequestHash
+        # requestHashPolicies:
+        # - headerHashOptions:
+        #     headerName: X-Some-Header
+        #   terminal: true
+        # - headerHashOptions:
+        #     headerName: User-Agent
+ 

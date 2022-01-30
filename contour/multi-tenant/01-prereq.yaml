@@ -23,7 +23,7 @@ spec:
           image: stevesloka/echo-server
           command: ["echo-server"]
           args:
-            - --echotext=This is the default app site!
+            - --echotext=This is the default app site in projectcontour-roots!
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -76,7 +76,7 @@ spec:
           image: stevesloka/echo-server
           command: ["echo-server"]
           args:
-            - --echotext=This is the default app site2!
+            - --echotext=This is the default app site in projectcontour-roots2!
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -13,7 +13,7 @@ data:
         value: foo
         rate_limit:
           unit: minute
-          requests_per_unit: 1
+          requests_per_unit: 3
 
       # each unique remote address (i.e. client IP)
       # is limited to one request per minute.

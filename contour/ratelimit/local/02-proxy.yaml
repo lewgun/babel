@@ -8,9 +8,9 @@ spec:
     fqdn: local.projectcontour.io
     rateLimitPolicy:
       local:
-        requests: 150
+        requests: 100
         unit: hour
-        burst: 10
+        burst: 3
   routes:
     - services:
         - name: rootapp
