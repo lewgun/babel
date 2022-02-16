@@ -38,7 +38,7 @@ metadata:
   name: rootapp
   namespace: projectcontour-roots
   annotations:
-    projectcontour.io/max-requests: "9"
+    projectcontour.io/max-requests: "10"
 spec:
   ports:
     - port: 80

@@ -8,7 +8,7 @@ spec:
     fqdn: local.projectcontour.io
     rateLimitPolicy:
       local:
-        requests: 100
+        requests: 16
         unit: hour
         burst: 3
   routes:

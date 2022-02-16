@@ -1,3 +1,4 @@
+
 apiVersion: projectcontour.io/v1
 kind: HTTPProxy
 metadata:
@@ -8,10 +9,10 @@ spec:
   virtualhost:
     fqdn: local.projectcontour.io
   includes:
-    - name: blue
-    #- name: blue2
-      #namespace: projectcontour-deploy2
-      namespace: projectcontour-deploy
+    #- name: blue
+    - name: blue2
+      namespace: projectcontour-deploy2
+      #namespace: projectcontour-deploy
       conditions:
         - prefix: /deploy
 
@@ -112,8 +113,8 @@ spec:
     - services:
         - name: blue2
           port: 80
-          weight: 0
+          weight: 50
 
         - name: green2
           port: 80
-          weight: 100                    
+          weight: 50                    

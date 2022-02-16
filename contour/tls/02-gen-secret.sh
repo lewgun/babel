@@ -1,3 +1,3 @@
 kubectl create secret tls contour-local-tls \
-  --cert=tls.crt \
-  --key=tls.key
+  --cert=./tls/tls.crt \
+  --key=./tls/tls.key
