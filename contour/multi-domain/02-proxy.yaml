@@ -1,0 +1,35 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: kuard
+  namespace: projectcontour-roots
+spec:
+  virtualhost:
+    fqdn: local.projectcontour.io
+
+  routes:
+    - services:
+        - name: kuard
+          port: 80
+      conditions:
+        - prefix: /
+
+      loadBalancerPolicy:
+       strategy: Random
+
+ 
+--- 
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: green
+  namespace: projectcontour-deploy
+spec:
+  virtualhost:
+    fqdn: local.projectsesame.io
+  routes:
+    - services:
+        - name: green
+          port: 80
+      conditions:
+        - prefix: /
