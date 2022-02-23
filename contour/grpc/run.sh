@@ -1,0 +1,1 @@
+ grpcurl --plaintext -d '{ "text" : "some fun here" }' local.projectcontour.io:80 yages.Echo.Reverse
